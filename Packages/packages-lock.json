@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.tiredsiren.unir3": {
+      "version": "https://github.com/ZemMezzer/UniR3.git?path=UniR3/Assets/UniR3#1.0.0",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.modules.imgui": "1.0.0"
+      },
+      "hash": "d76972b76dd64d0241a79e5d885bcdaff5a491a7"
+    },
     "com.tiredsiren.vcontainer": {
       "version": "https://github.com/ZemMezzer/VContainer.git?path=VContainer/Assets/VContainer#1.18.0",
       "depth": 0,

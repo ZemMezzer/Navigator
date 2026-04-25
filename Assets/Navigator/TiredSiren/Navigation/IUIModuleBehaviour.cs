@@ -1,6 +1,6 @@
 namespace TiredSiren.Navigation
 {
-    public interface INavigationArgs
+    public interface IUIModuleBehaviour
     {
         
     }
