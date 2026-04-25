@@ -24,6 +24,7 @@ namespace TiredSiren.Navigation.Resolvers
             void Installation(IContainerBuilder builder)
             {
                 builder.RegisterInstance(navigationArgs).AsSelf();
+                builder.Register<T>(Lifetime.Singleton).AsSelf();
                 EntryPointsBuilder.EnsureDispatcherRegistered(builder);
             }
         }
