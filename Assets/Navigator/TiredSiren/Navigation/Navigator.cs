@@ -1,7 +1,9 @@
+using System;
 using TiredSiren.Navigation.Arguments;
 using TiredSiren.Navigation.Controls;
 using TiredSiren.Navigation.Resolvers;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace TiredSiren.Navigation
 {
@@ -36,8 +38,8 @@ namespace TiredSiren.Navigation
             if(control == null)
                 return;
             
-            var module = _navigationModuleResolver.Resolve(control, navigationArgs);
-            control.OnBehaviourUpdate(module);
+            var model = _navigationModuleResolver.Resolve(control, navigationArgs);
+            control.SetModel(model);
             SyncNavigation(control, navigationArgs);
         }
 
@@ -78,7 +80,12 @@ namespace TiredSiren.Navigation
                 _current = node.Parent?.LastChild() ?? node.Parent;
 
             if (node.Control != null)
+            {
+                if(node.Control.Model is IDisposable disposable)
+                    disposable.Dispose();
+                
                 Object.Destroy(node.Control.gameObject);
+            }
         }
 
         private void SyncNavigation<T>(UIControl control, INavigationArgs<T> args) where T : IUIModuleBehaviour
