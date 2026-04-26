@@ -73,10 +73,10 @@ namespace TiredSiren.Navigation
                 CloseInternal(node.LastChild());
 
             node.Parent?.RemoveLastChild();
-            
+
             if (_current == node)
-                _current = node.Parent;
-            
+                _current = node.Parent?.LastChild() ?? node.Parent;
+
             if (node.Control != null)
                 Object.Destroy(node.Control.gameObject);
         }
@@ -85,12 +85,25 @@ namespace TiredSiren.Navigation
         {
             var depth = args.NavMetaData.Depth;
             var parent = _current;
-    
-            while (parent.Depth >= depth && parent.Parent != null)
-                parent = parent.Parent;
 
-            if (parent.LastChild() != null)
-                parent.LastChild().Control?.gameObject.SetActive(false);
+            while (parent.Depth > depth && parent.Parent != null)
+            {
+                while (parent.LastChild() != null)
+                    CloseInternal(parent.LastChild());
+
+                CloseInternal(parent);
+                parent = parent.Parent;
+            }
+
+            if (parent.Depth == depth)
+            {
+                parent.Control?.gameObject.SetActive(false);
+                parent = parent.Parent;
+            }
+            else
+            {
+                parent.LastChild()?.Control?.gameObject.SetActive(false);
+            }
 
             _current = new NavigationNode(args, control, parent);
         }
