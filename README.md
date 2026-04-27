@@ -42,10 +42,13 @@ public class NavigationNode
     public void AddChild(NavigationNode child);
     public void RemoveLastChild();
     public NavigationNode Find(byte depth, object args);
+    public NavigationNode FindLast(byte depth, object args);
 }
 ```
 
 `Args` holds the `INavigationArgs` that was used to open this node, used later for lookup during `CloseLast`.
+
+`Find` performs a full tree traversal. `FindLast` is an optimized variant used by `CloseLast` — it traverses only the top of each stack level and early-exits if the current depth exceeds the target.
 
 ---
 
@@ -142,9 +145,18 @@ public class SomePresenter
 ```csharp
 public interface INavigator
 {
+    ReadOnlyReactiveProperty<NavigationNode> Current { get; }
     void Navigate<T>(INavigationArgs<T> navigationArgs) where T : IUIModuleBehaviour;
     void CloseLast<T>(INavigationArgs<T> navigationArgs) where T : IUIModuleBehaviour;
 }
+```
+
+`Current` exposes the currently active `NavigationNode` as a reactive property. Subscribe to it to react to navigation changes:
+
+```csharp
+_navigator.Current
+    .Subscribe(node => Debug.Log($"Navigated to depth {node.Depth}"))
+    .AddTo(this);
 ```
 
 ---
