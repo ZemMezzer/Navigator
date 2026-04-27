@@ -41,11 +41,16 @@ namespace TiredSiren.Navigation.Layout
                 if (_layouts.TryGetValue(hash, out var collidingLayout))
                 {
                     var currentLayout = string.IsNullOrEmpty(layout.Name) ? layout.Prefab.name : layout.Name;
-                    Debug.LogError($"Layout {currentLayout} is already registered or colliding with: {collidingLayout.name}");
+                    LogError($"Layout {currentLayout} is already registered or colliding with: {collidingLayout.name}");
                     continue;
                 }
                 _layouts[hash] = layout.Prefab;
             }
+        }
+
+        private void LogError(string message)
+        {
+            Debug.LogError($"[Layouts Container]: {message}]");
         }
     }
 }
