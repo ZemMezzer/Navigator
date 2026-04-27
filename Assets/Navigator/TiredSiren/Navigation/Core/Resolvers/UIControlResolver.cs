@@ -20,7 +20,7 @@ namespace TiredSiren.Navigation.Resolvers
 
             if (layout == null)
             {
-                Debug.LogError($"Unable to resolve layout: {navigationArgs.NavMetaData.LayoutName}. Please make sure you are using the correct layout name and layout is presented in the layout container.");
+                LogError($"Unable to resolve layout: {navigationArgs.NavMetaData.LayoutName}. Please make sure you are using the correct layout name and layout is presented in the layout container.");
                 return null;
             }
             
@@ -29,9 +29,14 @@ namespace TiredSiren.Navigation.Resolvers
             if (instance.TryGetComponent(out UIControl control)) 
                 return control;
             
-            Debug.LogError($"Unable to bind module to layout: {layout.name}, unable to find control");
+            LogError($"Unable to bind module to layout: {layout.name}, unable to find control");
             Object.Destroy(instance);
             return null;
+        }
+
+        private void LogError(string message)
+        {
+            Debug.LogError($"[Controls Resolver]: {message}]");
         }
     }
 }

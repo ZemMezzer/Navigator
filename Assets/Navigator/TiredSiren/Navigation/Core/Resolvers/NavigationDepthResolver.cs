@@ -12,13 +12,13 @@ namespace TiredSiren.Navigation.Resolvers
         {
             if (depth >= _depthContainers.Length)
             {
-                Debug.LogError($"Depth container {depth} is out of bounds");
+                LogError($"Depth container {depth} is out of bounds");
                 return null;
             }
             
             var depthContainer = _depthContainers[depth];
             if (depthContainer == null)
-                Debug.LogError($"Unable to resolve depth container: {depth}");
+                LogError($"Unable to resolve depth container: {depth}");
             
             return depthContainer;
         }
@@ -40,6 +40,11 @@ namespace TiredSiren.Navigation.Resolvers
             {
                 _depthContainers[i] = oldContainer[i];
             }
+        }
+
+        private void LogError(string message)
+        {
+            Debug.LogError($"[Depth Resolver]: {message}");
         }
     }
 }
