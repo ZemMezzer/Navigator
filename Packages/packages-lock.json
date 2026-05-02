@@ -10,7 +10,7 @@
       "hash": "d76972b76dd64d0241a79e5d885bcdaff5a491a7"
     },
     "com.tiredsiren.vcontainer": {
-      "version": "https://github.com/ZemMezzer/VContainer.git?path=VContainer/Assets/VContainer#1.18.0",
+      "version": "https://github.com/ZemMezzer/VContainer.git?path=VContainer/Assets/VContainer#1.0.0",
       "depth": 0,
       "source": "git",
       "dependencies": {},

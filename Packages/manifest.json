@@ -15,7 +15,7 @@
     "com.unity.modules.physics2d": "1.0.0",
     "com.unity.modules.ui": "1.0.0",
     "com.unity.modules.unitywebrequest": "1.0.0",
-    "com.tiredsiren.vcontainer": "https://github.com/ZemMezzer/VContainer.git?path=VContainer/Assets/VContainer#1.18.0",
+    "com.tiredsiren.vcontainer": "https://github.com/ZemMezzer/VContainer.git?path=VContainer/Assets/VContainer#1.0.0",
     "com.tiredsiren.unir3": "https://github.com/ZemMezzer/UniR3.git?path=UniR3/Assets/UniR3#1.0.0"
   }
 }

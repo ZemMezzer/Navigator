@@ -7,7 +7,7 @@
     "description": "UI Navigator for Unity.",
     "license": "MIT",
     "dependencies": {
-        "com.tiredsiren.vcontainer": "1.18.0",
+        "com.tiredsiren.vcontainer": "1.0.0",
         "com.tiredsiren.unir3": "1.0.0"
     }
 }
